@@ -22,7 +22,7 @@ command = ARGV.first
 command = aliases[command] || command
 
 if command.nil?
-    puts "usage: #{program_name} (<page name> | <sub-command> [args...])"
+    $stderr.puts "usage: #{program_name} (<page name> | <sub-command> [args...])"
     exit 1
 end
 
