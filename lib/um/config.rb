@@ -1,15 +1,19 @@
 module Config
-  def self.source
-    config = {
+  CONFIG_REL_PATH = "~/.um/umconfig"
+
+  def self.source(set_from_config_file: {})
+    default_config = {
       "pager" => ENV['PAGER'] || "less",
       "editor" => ENV['EDITOR'] || "vi",
       "pages_directory" => File.expand_path("~/.um/pages")
     }
 
-    path = File.expand_path("~/.um/umconfig")
-    config.merge! parse_config(path) if File.exists? path
+    config_path = File.expand_path(CONFIG_REL_PATH)
+    if File.exists? config_path
+      set_from_config_file.merge! parse_config(config_path) 
+    end
 
-    config
+    default_config.merge set_from_config_file
   end
 
   private

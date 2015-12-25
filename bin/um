@@ -9,10 +9,12 @@ program_name = File.basename($PROGRAM_NAME)
 #}
 
 def run(file_name)
+  ARGV.shift
   exec(%{ruby "#{$libexec_path}/#{file_name}.rb" "#{ARGV.join(" ")}"})
 end
 
 aliases = {
+  "e" => "environment",
   "s" => "set",
   "l" => "list",
   "t" => "topic"
@@ -27,14 +29,13 @@ if command.nil?
 end
 
 case command
+when "environment"
+  run "um-environment"
 when "set"
-  ARGV.shift
   run "um-set"
 when "list"
-  ARGV.shift
   run "um-list"
 when "topic"
-  ARGV.shift
   run "um-topic"
 else
   run "um-read"
