@@ -1,0 +1,57 @@
+#! /usr/bin/env ruby
+
+$libexec_path = File.expand_path("../libexec", File.dirname(__FILE__))
+program_name = File.basename($PROGRAM_NAME)
+
+#list_pages () {
+#	ls $PAGES_PATH/$dir | sed 's/.txt//' | grep -v '^template$'
+#	exit 0
+#}
+
+def run(file_name)
+  exec(%{ruby "#{$libexec_path}/#{file_name}.rb" "#{ARGV.join(" ")}"})
+end
+
+aliases = {
+  "s" => "set"
+}
+
+command = ARGV.first
+command = aliases[command] || command
+
+if command.nil?
+    puts "usage: #{program_name} (<page name> | <sub-command> [args...])"
+    exit 1
+end
+
+case command
+when "set"
+  puts "Setting a page."
+else
+  puts "Showing a page."
+  run "um-read"
+end
+
+#shift $((OPTIND - 1))
+#
+#if [ "$list_mode" = "true" ]; then
+#    list_pages
+#fi
+#
+#if [[ $# -le 0 ]]; then
+#	print_usage
+#	exit 2
+#fi
+#
+#if [[ "$set_mode" = "false" && ! -e $PAGES_PATH/$dir/$1.txt ]]; then
+#	echo "No um page available for that command."
+#	exit 3
+#fi
+#
+#if [ "$set_mode" = "true" ]; then
+#    mkdir -p $PAGES_PATH/$dir
+#	cp -n $PAGES_PATH/template.txt $PAGES_PATH/$dir/$1.txt
+#	vim $PAGES_PATH/$dir/$1.txt
+#else
+#	less $PAGES_PATH/$dir/$1.txt
+#fi
