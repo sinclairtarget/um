@@ -13,7 +13,9 @@ def run(file_name)
 end
 
 aliases = {
-  "s" => "set"
+  "s" => "set",
+  "l" => "list",
+  "t" => "topic"
 }
 
 command = ARGV.first
@@ -26,9 +28,15 @@ end
 
 case command
 when "set"
-  puts "Setting a page."
+  ARGV.shift
+  run "um-set"
+when "list"
+  ARGV.shift
+  run "um-list"
+when "topic"
+  ARGV.shift
+  run "um-topic"
 else
-  puts "Showing a page."
   run "um-read"
 end
 
