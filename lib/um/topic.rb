@@ -33,6 +33,6 @@ module Topic
   end
 
   def self.write_topic(path, topic)
-    IO.write(path, topic)
+    File.write(path, topic)
   end
 end
