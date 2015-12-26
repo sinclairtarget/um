@@ -3,11 +3,10 @@ require 'shellwords'
 require 'tempfile'
 require_relative "../lib/um.rb"
 
-program_name = File.basename($PROGRAM_NAME)
-usage = "usage: #{program_name} <page name>"
+usage = "usage: um set <page name>"
 
 page_name = ARGV.first
-unless page_name
+if page_name.to_s.empty?
   $stderr.puts usage
   exit 1
 end

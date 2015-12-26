@@ -10,15 +10,16 @@ end
 
 aliases = {
   "e" => "environment",
-  "s" => "set",
   "l" => "list",
+  "r" => "read",
+  "s" => "set",
   "t" => "topic"
 }
 
 command = ARGV.first
 command = aliases[command] || command
 
-unless command
+if command.to_s.empty?
     $stderr.puts "usage: #{program_name} (<page name> | <sub-command> [args...])"
     exit 1
 end
@@ -26,10 +27,12 @@ end
 case command
 when "environment"
   run "um-environment"
-when "set"
-  run "um-set"
 when "list"
   run "um-list"
+when "read"
+  run "um-read"
+when "set"
+  run "um-set"
 when "topic"
   run "um-topic"
 else

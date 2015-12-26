@@ -12,7 +12,11 @@ module Topic
   end
 
   def self.set(topic)
-    write_topic(topic_file_path, topic)
+    write_topic(topic_file_path, topic) unless topic.empty?
+  end
+
+  def self.clear
+    File.delete topic_file_path
   end
 
   private 
