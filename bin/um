@@ -39,5 +39,5 @@ file_name = Commands.libexec(command)
 if file_name
   run file_name
 else
-  run "um-read.rb", should_shift: false
+  run Commands.libexec("read"), should_shift: false
 end
