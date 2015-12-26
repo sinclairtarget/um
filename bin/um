@@ -1,40 +1,45 @@
 #! /usr/bin/env ruby
 
+require 'optparse'
+require_relative '../lib/um.rb'
+
 $libexec_path = File.expand_path("../libexec", File.dirname(__FILE__))
-program_name = File.basename($PROGRAM_NAME)
+
+usage = %{usage: um <page name>  
+       um <sub-command> [ARGS...]
+
+The first form is equivalent to `um read <page name>`.
+
+Subcommands:
+  um (e)nvironment          Display configuration information.
+  um (l)ist                 List the available pages for the current topic.
+  um (r)ead <page name>     Read the given page under the current topic.
+  um (s)et <page name>      Edit the given page under the current topic.
+  um (t)opic [topic]        Get or set the current topic.
+  um (h)elp [sub-command]   Display this help message, or the help message for a sub-command.}
 
 def run(file_name, should_shift: true)
   ARGV.shift if should_shift
-  exec(%{ruby "#{$libexec_path}/#{file_name}.rb" "#{ARGV.join(" ")}"})
+  exec(%{ruby "#{$libexec_path}/#{file_name}" #{ARGV.join(" ")}})
 end
-
-aliases = {
-  "e" => "environment",
-  "l" => "list",
-  "r" => "read",
-  "s" => "set",
-  "t" => "topic"
-}
 
 command = ARGV.first
-command = aliases[command] || command
+command = Commands.alias(command) || command
 
 if command.to_s.empty?
-    $stderr.puts "usage: #{program_name} (<page name> | <sub-command> [args...])"
-    exit 1
+  $stderr.puts usage
+  exit 1
 end
 
-case command
-when "environment"
-  run "um-environment"
-when "list"
-  run "um-list"
-when "read"
-  run "um-read"
-when "set"
-  run "um-set"
-when "topic"
-  run "um-topic"
+if (command == "help" or command == "--help" or command == "-h") and
+    ARGV.length == 1
+  puts usage
+  exit 0
+end
+
+file_name = Commands.libexec(command)
+if file_name
+  run file_name
 else
-  run "um-read", should_shift: false
+  run "um-read.rb", should_shift: false
 end

@@ -1,7 +1,30 @@
+require 'optparse'
 require_relative '../lib/um.rb'
 
+options = {}
+opts_parser = OptionParser.new do |opts|
+  opts.banner = "usage: um list [OPTIONS...]"
+
+  opts.on("-t", "--topic TOPIC", "Set topic for a single invocation.") do |topic|
+    options[:topic] = topic
+  end
+
+  opts.on("-h", "--help", "Print this help message.") do
+    puts opts
+    exit 0
+  end
+end
+
+begin
+  opts_parser.parse! ARGV
+rescue OptionParser::InvalidOption => e
+  $stderr.puts e
+  $stderr.puts opts_parser
+  exit 1
+end
+
 config = Config.source
-topic = Topic.current
+topic = options[:topic] || Topic.current(config["default_topic"])
 
 pages_path = "#{config["pages_directory"]}/#{topic}"
 unless Dir.exists? pages_path

@@ -6,7 +6,8 @@ module Config
     default_config = {
       "pager" => ENV['PAGER'] || "less",
       "editor" => ENV['EDITOR'] || "vi",
-      "pages_directory" => File.expand_path("~/.um/pages")
+      "pages_directory" => File.expand_path("~/.um/pages"),
+      "default_topic" => "shell"
     }
 
     config_path = File.expand_path(CONFIG_FILE_REL_PATH)

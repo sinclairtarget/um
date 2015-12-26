@@ -2,13 +2,13 @@ require 'etc'
 require 'fileutils'
 
 module Topic
-  def self.current
-    topic = "shell"
-
+  def self.current(default)
     file_path = topic_file_path
-    topic = read_topic(file_path) if File.exists? file_path
-
-    topic
+    if File.exists? file_path
+      read_topic(file_path)
+    else
+      default
+    end
   end
 
   def self.set(topic)
@@ -16,7 +16,8 @@ module Topic
   end
 
   def self.clear
-    File.delete topic_file_path
+    file_path = topic_file_path
+    File.delete file_path if File.exists? file_path
   end
 
   private 

@@ -1,18 +1,39 @@
 require 'fileutils'
 require 'shellwords'
 require 'tempfile'
+require 'optparse'
 require_relative "../lib/um.rb"
 
-usage = "usage: um set <page name>"
+options = {}
+opts_parser = OptionParser.new do |opts|
+  opts.banner = "usage: um set [OPTIONS...] <page name>"
+
+  opts.on("-t", "--topic TOPIC", "Set topic for a single invocation.") do |topic|
+    options[:topic] = topic
+  end
+
+  opts.on("-h", "--help", "Print this help message.") do
+    puts opts
+    exit 0
+  end
+end
+
+begin
+  opts_parser.parse! ARGV
+rescue OptionParser::InvalidOption => e
+  $stderr.puts e
+  $stderr.puts opts_parser
+  exit 1
+end
 
 page_name = ARGV.first
 if page_name.to_s.empty?
-  $stderr.puts usage
+  $stderr.puts opts_parser
   exit 1
 end
 
 config = Config.source
-topic = Topic.current
+topic = options[:topic] || Topic.current(config["default_topic"])
 
 page_dir = "#{config["pages_directory"]}/#{topic}"
 page_path = page_dir + "/#{page_name}.txt"
