@@ -5,7 +5,7 @@ program_name = File.basename($PROGRAM_NAME)
 usage = "usage: #{program_name} <page name>"
 
 page_name = ARGV.first
-if page_name.nil?
+unless page_name
   $stderr.puts usage
   exit 1
 end

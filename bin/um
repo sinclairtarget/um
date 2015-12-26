@@ -8,8 +8,8 @@ program_name = File.basename($PROGRAM_NAME)
 #	exit 0
 #}
 
-def run(file_name)
-  ARGV.shift
+def run(file_name, should_shift: true)
+  ARGV.shift if should_shift
   exec(%{ruby "#{$libexec_path}/#{file_name}.rb" "#{ARGV.join(" ")}"})
 end
 
@@ -23,7 +23,7 @@ aliases = {
 command = ARGV.first
 command = aliases[command] || command
 
-if command.nil?
+unless command
     $stderr.puts "usage: #{program_name} (<page name> | <sub-command> [args...])"
     exit 1
 end
@@ -38,7 +38,7 @@ when "list"
 when "topic"
   run "um-topic"
 else
-  run "um-read"
+  run "um-read", should_shift: false
 end
 
 #shift $((OPTIND - 1))

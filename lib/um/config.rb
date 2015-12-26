@@ -1,5 +1,6 @@
 module Config
-  CONFIG_REL_PATH = "~/.um/umconfig"
+  CONFIG_DIR_REL_PATH = "~/.um"
+  CONFIG_FILE_REL_PATH = "~/.um/umconfig"
 
   def self.source(set_from_config_file: {})
     default_config = {
@@ -8,7 +9,7 @@ module Config
       "pages_directory" => File.expand_path("~/.um/pages")
     }
 
-    config_path = File.expand_path(CONFIG_REL_PATH)
+    config_path = File.expand_path(CONFIG_FILE_REL_PATH)
     if File.exists? config_path
       set_from_config_file.merge! parse_config(config_path) 
     end
