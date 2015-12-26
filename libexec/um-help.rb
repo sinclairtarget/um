@@ -1,7 +1,8 @@
 require 'optparse'
 require_relative '../lib/um.rb'
 
-$libexec_path = File.dirname(__FILE__)
+$file = File.symlink?(__FILE__) ? File.readlink(__FILE__) : __FILE__
+$libexec_path = File.dirname($file)
 
 def run_help_only(file_name)
   exec(%{ruby "#{$libexec_path}/#{file_name}" --help})

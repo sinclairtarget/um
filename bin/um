@@ -3,7 +3,8 @@
 require 'optparse'
 require_relative '../lib/um.rb'
 
-$libexec_path = File.expand_path("../libexec", File.dirname(__FILE__))
+$file = File.symlink?(__FILE__) ? File.readlink(__FILE__) : __FILE__
+$libexec_path = File.expand_path("../libexec", File.dirname($file))
 
 usage = %{usage: um <page name>  
        um <sub-command> [ARGS...]

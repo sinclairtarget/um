@@ -4,6 +4,8 @@ require 'tempfile'
 require 'optparse'
 require_relative "../lib/um.rb"
 
+$file = File.symlink?(__FILE__) ? File.readlink(__FILE__) : __FILE__
+
 options = {}
 opts_parser = OptionParser.new do |opts|
   opts.banner = "usage: um set [OPTIONS...] <page name>"
@@ -42,7 +44,7 @@ page_path = page_dir + "/#{page_name}.txt"
 temp_file = nil
 unless File.exists? page_path
   default_template_path = File.expand_path("../share/template.txt", 
-                                           File.dirname(__FILE__))
+                                           File.dirname($file))
   template_path = File.expand_path(Config::CONFIG_DIR_REL_PATH) + "/template.txt"
 
   FileUtils.mkdir_p page_dir
