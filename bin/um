@@ -3,11 +3,6 @@
 $libexec_path = File.expand_path("../libexec", File.dirname(__FILE__))
 program_name = File.basename($PROGRAM_NAME)
 
-#list_pages () {
-#	ls $PAGES_PATH/$dir | sed 's/.txt//' | grep -v '^template$'
-#	exit 0
-#}
-
 def run(file_name, should_shift: true)
   ARGV.shift if should_shift
   exec(%{ruby "#{$libexec_path}/#{file_name}.rb" "#{ARGV.join(" ")}"})
@@ -40,27 +35,3 @@ when "topic"
 else
   run "um-read", should_shift: false
 end
-
-#shift $((OPTIND - 1))
-#
-#if [ "$list_mode" = "true" ]; then
-#    list_pages
-#fi
-#
-#if [[ $# -le 0 ]]; then
-#	print_usage
-#	exit 2
-#fi
-#
-#if [[ "$set_mode" = "false" && ! -e $PAGES_PATH/$dir/$1.txt ]]; then
-#	echo "No um page available for that command."
-#	exit 3
-#fi
-#
-#if [ "$set_mode" = "true" ]; then
-#    mkdir -p $PAGES_PATH/$dir
-#	cp -n $PAGES_PATH/template.txt $PAGES_PATH/$dir/$1.txt
-#	vim $PAGES_PATH/$dir/$1.txt
-#else
-#	less $PAGES_PATH/$dir/$1.txt
-#fi
