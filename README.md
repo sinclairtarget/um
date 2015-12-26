@@ -68,3 +68,10 @@ $name     (Replaced with the name of the page, which you specify when you call `
 $topic    (Replaced with the name of the current topic)
 $time     (Replaced with the current time in RFC2822 format)
 ```
+
+## Tips
+If you want to reset the topic to its default whenever you start a new shell,
+you can place the following line in your `.bash_profile` or `.bashrc`:
+```
+um topic -d
+```
