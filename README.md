@@ -14,7 +14,7 @@ That way you have an easy reference for the things you already know are useful.
 ```
 $ um grep
 ```
-That will pull up whatever you might have for `grep` in your pager, probably `less`:
+That will open your pager with whatever you might have for `grep`:
 ```
 grep - Print lines matching a pattern
 
