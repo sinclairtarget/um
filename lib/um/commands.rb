@@ -14,7 +14,8 @@ module Commands
 
   def self.libexec(cmd)
     if ALIASES.values.include? cmd
-      "um-#{cmd}.rb"
+      dir = File.expand_path("../../libexec", File.dirname(__FILE__))
+      "#{dir}/um-#{cmd}.rb"
     else
       nil
     end

@@ -3,9 +3,6 @@
 require 'optparse'
 require_relative '../lib/um.rb'
 
-$file = File.symlink?(__FILE__) ? File.readlink(__FILE__) : __FILE__
-$libexec_path = File.expand_path("../libexec", File.dirname($file))
-
 usage = %{usage: um <page name>  
        um <sub-command> [ARGS...]
 
@@ -21,7 +18,7 @@ Subcommands:
 
 def run(file_name, should_shift: true)
   ARGV.shift if should_shift
-  exec(%{ruby "#{$libexec_path}/#{file_name}" #{ARGV.join(" ")}})
+  exec(%{ruby "#{file_name}" #{ARGV.join(" ")}})
 end
 
 command = ARGV.first
