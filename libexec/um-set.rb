@@ -69,10 +69,12 @@ begin
   editor = config["editor"].shellescape
   system(%{#{editor} "#{page_path}"})
 
-  if temp_file and system(%{diff "#{page_path}" "#{temp_file.path}"})
-    `rm -f "#{page_path}"`
-    temp_file.unlink
-    temp_file.close
+  if temp_file
+    `diff "#{page_path}" "#{temp_file.path}"`
+
+    if $?.success? # files are the same
+      `rm -f "#{page_path}"`
+    end
   end
 ensure
   if temp_file
