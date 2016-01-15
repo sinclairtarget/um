@@ -4,6 +4,7 @@ module Commands
     "l" => "list",
     "r" => "read",
     "s" => "set",
+    "rm" => "rm",
     "t" => "topic",
     "h" => "help"
   }

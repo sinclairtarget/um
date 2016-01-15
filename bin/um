@@ -13,6 +13,7 @@ Subcommands:
   um (l)ist                 List the available pages for the current topic.
   um (r)ead <page name>     Read the given page under the current topic.
   um (s)et <page name>      Edit the given page under the current topic.
+  um rm <page name>         Remove the given page.
   um (t)opic [topic]        Get or set the current topic.
   um (h)elp [sub-command]   Display this help message, or the help message for a sub-command.}
 
