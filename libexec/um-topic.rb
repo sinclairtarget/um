@@ -23,7 +23,7 @@ rescue OptionParser::InvalidOption => e
   exit 1
 end
 
-config = Config.source
+config = UmConfig.source
 topic = ARGV.first
 
 if topic.to_s.empty?

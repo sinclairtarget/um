@@ -23,7 +23,7 @@ rescue OptionParser::InvalidOption => e
   exit 1
 end
 
-config = Config.source
+config = UmConfig.source
 topic = options[:topic] || Topic.current(config["default_topic"])
 
 pages_path = "#{config["pages_directory"]}/#{topic}"

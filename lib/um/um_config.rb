@@ -1,4 +1,4 @@
-module Config
+module UmConfig
   CONFIG_DIR_REL_PATH = "~/.um"
   CONFIG_FILE_REL_PATH = "~/.um/umconfig"
 

@@ -20,9 +20,9 @@ rescue OptionParser::InvalidOption => e
 end
 
 set_from_config_file = {}
-config_file_path = File.expand_path(Config::CONFIG_FILE_REL_PATH)
+config_file_path = File.expand_path(UmConfig::CONFIG_FILE_REL_PATH)
 
-config = Config.source(set_from_config_file: set_from_config_file)
+config = UmConfig.source(set_from_config_file: set_from_config_file)
 
 unless set_from_config_file.empty?
   puts "Options prefixed by '*' are set in #{config_file_path}."
