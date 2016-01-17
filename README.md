@@ -75,3 +75,10 @@ you can place the following line in your `.bash_profile` or `.bashrc`:
 ```
 um topic -d
 ```
+
+## Known Issues
+If ruby complains about `Config` being obsolete and deprecated...
+```
+/usr/local/Cellar/um/1.1/lib/um/config.rb:1:in `<top (required)>': Use RbConfig instead of obsolete and deprecated Config.
+```
+...make sure to update your version of ruby.
