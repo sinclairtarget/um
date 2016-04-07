@@ -17,8 +17,7 @@ Subcommands:
   um (t)opic [topic]        Get or set the current topic.
   um (h)elp [sub-command]   Display this help message, or the help message for a sub-command.}
 
-def run(file_name, should_shift: true)
-  ARGV.shift if should_shift
+def run(file_name)
   exec(%{ruby "#{file_name}" #{ARGV.join(" ")}})
 end
 
@@ -30,15 +29,15 @@ if command.to_s.empty?
   exit 1
 end
 
-if (command == "help" or command == "--help" or command == "-h") and
-    ARGV.length == 1
+if (command == "help" or command == "--help" or command == "-h") and ARGV.length == 1
   puts usage
   exit 0
 end
 
 file_name = Commands.libexec(command)
 if file_name
+  ARGV.shift
   run file_name
 else
-  run Commands.libexec("read"), should_shift: false
+  run Commands.libexec("read")
 end
