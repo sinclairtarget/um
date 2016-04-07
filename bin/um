@@ -17,12 +17,7 @@ Subcommands:
   um (t)opic [topic]        Get or set the current topic.
   um (h)elp [sub-command]   Display this help message, or the help message for a sub-command.}
 
-def run(file_name)
-  exec(%{ruby "#{file_name}" #{ARGV.join(" ")}})
-end
-
 command = ARGV.first
-command = Commands.alias(command) || command
 
 if command.to_s.empty?
   $stderr.puts usage
@@ -34,10 +29,4 @@ if (command == "help" or command == "--help" or command == "-h") and ARGV.length
   exit 0
 end
 
-file_name = Commands.libexec(command)
-if file_name
-  ARGV.shift
-  run file_name
-else
-  run Commands.libexec("read")
-end
+Commands.libexec(command)
