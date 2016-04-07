@@ -33,9 +33,9 @@ if page_name.to_s.empty?
 end
 
 config = UmConfig.source
-topic = options[:topic] || Topic.current(config["default_topic"])
+topic = options[:topic] || Topic.current(config[:default_topic])
 
-page_dir = "#{config["pages_directory"]}/#{topic}"
+page_dir = "#{config[:pages_directory]}/#{topic}"
 page_path = page_dir + "/#{page_name}.txt"
 
 # set up template
@@ -66,7 +66,7 @@ unless File.exists? page_path
 end
 
 begin
-  editor = config["editor"].shellescape
+  editor = config[:editor].shellescape
   system(%{#{editor} "#{page_path}"})
 
   if temp_file

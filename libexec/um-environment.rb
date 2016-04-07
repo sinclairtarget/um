@@ -19,12 +19,11 @@ rescue OptionParser::InvalidOption => e
   exit 1
 end
 
-set_from_config_file = {}
-config_file_path = File.expand_path(UmConfig::CONFIG_FILE_REL_PATH)
+config = UmConfig.source
+non_default_keys = UmConfig.non_default_keys(config)
+config_file_path = UmConfig.config_path
 
-config = UmConfig.source(set_from_config_file: set_from_config_file)
-
-unless set_from_config_file.empty?
+unless non_default_keys.empty?
   puts "Options prefixed by '*' are set in #{config_file_path}."
   puts "=" * 80
 end
@@ -32,7 +31,7 @@ end
 config.each do |key, value|
   option = "#{key} = #{value}"
 
-  if set_from_config_file.has_key? key
+  if non_default_keys.include?(key)
     puts "* " + option
   else
     puts "  " + option

@@ -27,7 +27,7 @@ config = UmConfig.source
 topic = ARGV.first
 
 if topic.to_s.empty?
-  puts Topic.current(config["default_topic"])
+  puts Topic.current(config[:default_topic])
 else
   Topic.set topic
 end

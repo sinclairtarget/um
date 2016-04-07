@@ -1,21 +1,36 @@
 module UmConfig
-  CONFIG_DIR_REL_PATH = "~/.um"
-  CONFIG_FILE_REL_PATH = "~/.um/umconfig"
+  CONFIG_DIR_REL_PATH = "~/.um".freeze
+  CONFIG_FILE_REL_PATH = "~/.um/umconfig".freeze
 
-  def self.source(set_from_config_file: {})
-    default_config = {
-      "pager" => ENV['PAGER'] || "less",
-      "editor" => ENV['EDITOR'] || "vi",
-      "pages_directory" => File.expand_path("~/.um/pages"),
-      "default_topic" => "shell"
-    }
+  DEFAULT_CONFIG = {
+    pager: ENV['PAGER'] || "less",
+    editor: ENV['EDITOR'] || "vi",
+    pages_directory: File.expand_path("~/.um/pages"),
+    default_topic: "shell"
+  }.freeze
 
-    config_path = File.expand_path(CONFIG_FILE_REL_PATH)
+  # Sources the config file, returning the environment as a hash.
+  def self.source
     if File.exists? config_path
-      set_from_config_file.merge! parse_config(config_path) 
+      parsed_config = parse_config(config_path)
+      DEFAULT_CONFIG.merge parsed_config
+    else
+      DEFAULT_CONFIG
+    end
+  end
+
+  # Returns the keys in a configuration hash with values that aren't defaults.
+  def self.non_default_keys(config)
+    keys = []
+    config.each do |key, value|
+      keys << key if value != DEFAULT_CONFIG[key]
     end
 
-    default_config.merge set_from_config_file
+    keys
+  end
+
+  def self.config_path
+    config_path = File.expand_path(CONFIG_FILE_REL_PATH)
   end
 
   private
@@ -25,7 +40,7 @@ module UmConfig
     parse_error_occurred = false
     File.foreach(path) do |line|
       if line[/(\w+) = ([\w \/\(\)\.]+)/]
-        config[$1.downcase] = $2
+        config[$1.downcase.to_sym] = $2
       elsif line.chomp.length > 0
         $stderr.puts "Unable to parse configuration file line #{$.}: " + 
           "'#{line.chomp}', skipping"

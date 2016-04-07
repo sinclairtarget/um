@@ -24,9 +24,9 @@ rescue OptionParser::InvalidOption => e
 end
 
 config = UmConfig.source
-topic = options[:topic] || Topic.current(config["default_topic"])
+topic = options[:topic] || Topic.current(config[:default_topic])
 
-pages_path = "#{config["pages_directory"]}/#{topic}"
+pages_path = "#{config[:pages_directory]}/#{topic}"
 unless Dir.exists? pages_path
   $stderr.puts %{No pages found for topic "#{topic}."}
   exit 2
