@@ -32,7 +32,7 @@ if page_name.to_s.empty?
   exit 1
 end
 
-config = Config.source
+config = UmConfig.source
 topic = options[:topic] || Topic.current(config["default_topic"])
 
 page_dir = "#{config["pages_directory"]}/#{topic}"
@@ -43,7 +43,7 @@ temp_file = nil
 unless File.exists? page_path
   default_template_path = File.expand_path("../share/template.txt", 
                                            File.dirname(__FILE__))
-  template_path = File.expand_path(Config::CONFIG_DIR_REL_PATH) + "/template.txt"
+  template_path = File.expand_path(UmConfig::CONFIG_DIR_REL_PATH) + "/template.txt"
 
   FileUtils.mkdir_p page_dir
 

@@ -30,7 +30,7 @@ if page_name.to_s.empty?
   exit 1
 end
 
-config = Config.source
+config = UmConfig.source
 topic = options[:topic] || Topic.current(config["default_topic"])
 
 page_path = "#{config["pages_directory"]}/#{topic}/#{page_name}.txt"
