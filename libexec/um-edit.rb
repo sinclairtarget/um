@@ -6,7 +6,7 @@ require_relative "../lib/um.rb"
 
 options = {}
 opts_parser = OptionParser.new do |opts|
-  opts.banner = "usage: um set [OPTIONS...] <page name>"
+  opts.banner = "usage: um edit [OPTIONS...] <page name>"
 
   opts.on("-t", "--topic TOPIC", "Set topic for a single invocation.") do |topic|
     options[:topic] = topic
