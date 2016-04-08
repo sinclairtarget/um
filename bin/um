@@ -30,4 +30,9 @@ if (command == "help" or command == "--help" or command == "-h") and ARGV.length
   exit 0
 end
 
+if (command == "version" or command == "--version" or command == "-v") and ARGV.length == 1
+  puts "1.2.0"
+  exit 0
+end
+
 Commands.libexec(command)
