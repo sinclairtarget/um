@@ -31,7 +31,7 @@ if (command == "help" or command == "--help" or command == "-h") and ARGV.length
 end
 
 if (command == "version" or command == "--version" or command == "-v") and ARGV.length == 1
-  puts "1.2.0"
+  puts "2.0.0"
   exit 0
 end
 
