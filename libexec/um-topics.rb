@@ -19,5 +19,12 @@ rescue OptionParser::InvalidOption => e
 end
 
 config = UmConfig.source
-files = Dir["#{config[:pages_directory]}/*"]
-files.each { |file| puts File.basename(file) }
+files = Dir["#{config[:pages_directory]}/*"].map { |file| File.basename(file) }
+
+output = files.join("\n")
+
+if $stdout.isatty
+  exec(%{echo "#{output}" | column})
+else
+  puts output
+end
