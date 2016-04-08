@@ -29,9 +29,9 @@ if sub_command.to_s.empty?
   exit 1
 end
 
-sub_command = Commands.alias(sub_command) || sub_command
+sub_command = Commands.resolve_alias(sub_command) || sub_command
 
-file_name = Commands.libexec(sub_command)
+file_name = Commands.file_path_for_command(sub_command)
 if file_name
   run_help_only file_name
 else

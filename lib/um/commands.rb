@@ -24,7 +24,6 @@ module Commands
     end
   end
 
-  private
   def self.file_path_for_command(cmd)
     dir = File.expand_path("../../libexec", File.dirname(__FILE__))
     path = "#{dir}/um-#{cmd}.rb"
@@ -35,6 +34,7 @@ module Commands
     end
   end
 
+  private
   def self.run(file_path)
     exec(%{ruby "#{file_path}" #{ARGV.join(" ")}})
   end
