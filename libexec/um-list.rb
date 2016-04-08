@@ -32,4 +32,8 @@ unless Dir.exists? pages_path
   exit 2
 end
 
-exec(%{ls "#{pages_path}" | sed 's/.txt//' | column})
+if $stdout.isatty
+  exec(%{ls "#{pages_path}" | sed 's/.txt//' | column})
+else
+  exec(%{ls "#{pages_path}" | sed 's/.txt//' })
+end
