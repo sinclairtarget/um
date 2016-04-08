@@ -1,10 +1,12 @@
 module Commands
   ALIASES = {
-    "e" => "environment",
     "l" => "list",
     "r" => "read",
-    "s" => "set",
+    "e" => "edit",
+    "s" => "edit",     # legacy support
+    "set" => "edit",   # legacy support
     "t" => "topic",
+    "c" => "config",
     "h" => "help"
   }
 
