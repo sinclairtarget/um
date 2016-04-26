@@ -6,7 +6,7 @@ Have you seen how long curl's man page is? How many times have you gone through 
 how to make a POST request?
 
 Man pages are written to be comprehensive, but what humans really need are the bullet points. Use `um`
-to write your own man-like help pages that reflect what you have learned about a command so far.
+to write your own man-like help pages that reflect what you've learned about a command so far.
 That way you have an easy reference for the things you already know are useful.
 
 ### An Example
@@ -35,7 +35,7 @@ OPTIONS
 ...
 ```
 
-`um` supports several sub-commands, git-style. `um set netstat` will create or edit the um page for netstat. `um list` will
+`um` supports several sub-commands, git-style. `um edit netstat` will create or edit the um page for netstat. `um list` will
 list all the um pages you already have. `um topic css` will set the current topic to "css", because you don't
 have to use um exclusively for shell commands.
 
@@ -64,7 +64,7 @@ the values for `pager` and `editor` from the shell environment if they are not s
 If you place a file called `template.txt` in `.um`, that file will serve as the basis for any new um pages you create.
 The template is preprocessed and the following variables will be replaced before the file is opened in your editor:
 ```
-$name     (Replaced with the name of the page, which you specify when you call `um set <page name>`)
+$name     (Replaced with the name of the page, which you specify when you call `um edit <page name>`)
 $topic    (Replaced with the name of the current topic)
 $time     (Replaced with the current time in RFC2822 format)
 ```
