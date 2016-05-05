@@ -15,7 +15,7 @@ Subcommands:
   um rm <page name>         Remove the given page.
   um (t)opic [topic]        Get or set the current topic.
   um topics                 List all topics.
-  um (c)onfig               Display configuration environment.
+  um (c)onfig [config key]  Display configuration environment.
   um (h)elp [sub-command]   Display this help message, or the help message for a sub-command.}
 
 command = ARGV.first
