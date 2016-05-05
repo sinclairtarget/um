@@ -4,7 +4,7 @@ require_relative '../lib/um.rb'
 opts_parser = OptionParser.new do |opts|
   opts.banner = "usage: um topic [OPTIONS...] [topic]"
 
-  opts.on("-d", "--default", "Set the default topic.") do
+  opts.on("-d", "--default", "Resets the topic to the default.") do
     Topic.clear
     exit 0
   end
