@@ -7,6 +7,7 @@ module Topic
     if File.exists? file_path
       read_topic(file_path)
     else
+      write_topic(topic_file_path, default)
       default
     end
   end
