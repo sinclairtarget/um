@@ -1,12 +1,12 @@
 # um
-`um` is a command-line utility for creating and maintaining your own set of man-like help pages. 
+`um` is a command-line utility for creating and maintaining your own set of `man`-like help pages. 
 
 ### Why?
-Have you seen how long curl's man page is? How many times have you gone through it trying to figure out 
+Have you seen how long `curl`'s man page is? How many times have you gone through it trying to figure out 
 how to make a POST request?
 
 Man pages are written to be comprehensive, but what humans really need are the bullet points. Use `um`
-to write your own man-like help pages that reflect what you've learned about a command so far.
+to write your own `man`-like help pages that reflect what you've learned about a command so far.
 That way you have an easy reference for the things you already know are useful.
 
 ### An Example
@@ -50,7 +50,7 @@ Refer to `um help` for comprehensive documentation of the sub-commands and optio
 
 ## Configuration
 You can configure `um` using a file called `umconfig` placed in a folder called `.um` in your home directory. The
-syntax for setting an option as follows:
+syntax for setting an option is as follows:
 ```
 <option> = <value>
 e.g.
