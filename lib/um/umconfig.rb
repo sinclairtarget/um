@@ -1,3 +1,6 @@
+require 'etc'
+require 'fileutils'
+
 module UmConfig
   CONFIG_DIR_REL_PATH = "~/.um".freeze
   CONFIG_FILE_REL_PATH = "~/.um/umconfig".freeze
@@ -11,12 +14,17 @@ module UmConfig
 
   # Sources the config file, returning the environment as a hash.
   def self.source
+    config = {}
+
     if File.exists? config_path
       parsed_config = parse_config(config_path)
-      DEFAULT_CONFIG.merge parsed_config
+      config = DEFAULT_CONFIG.merge(parsed_config)
     else
-      DEFAULT_CONFIG
+      config = DEFAULT_CONFIG
     end
+
+    write_pages_directory(config[:pages_directory])
+    config
   end
 
   # Returns the keys in a configuration hash with values that aren't defaults.
@@ -50,5 +58,15 @@ module UmConfig
 
     $stderr.puts "Your configuration file is #{path}" if parse_error_occurred
     config
+  end
+
+  def self.write_pages_directory(pages_directory_path)
+    tmp_dir_path = "/var/tmp/um/" + Etc.getlogin
+    FileUtils.mkdir_p tmp_dir_path
+
+    tmp_file_path = tmp_dir_path + "/current.pagedir"
+    unless File.exists?(tmp_file_path)
+      File.write(tmp_file_path, pages_directory_path)
+    end
   end
 end
