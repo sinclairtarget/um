@@ -10,11 +10,16 @@ to write your own `man`-like help pages that reflect what you've learned about a
 That way you have an easy reference for the things you already know are useful.
 
 ### An Example
-`man` is easy and quick. `um` tries to be the same:
+Say you've just reminded yourself how `grep` works for the third time this month. You'd like to hold on to that precious knowledge so you don't have to go digging through the `grep` man page again. You can do that with `um`:
+```
+$ um edit grep
+```
+That will open your text editor, allowing you to record everything you want to remember about `grep`. Once you've saved what you've written, you can pull it up again as easily as you would any man page:
+
 ```
 $ um grep
 ```
-That will open your pager with whatever you might have for `grep`:
+That will open your pager with whatever you might have for `grep`, say:
 ```
 grep - Print lines matching a pattern
 
@@ -35,14 +40,24 @@ OPTIONS
 ...
 ```
 
-`um` supports several sub-commands, git-style. `um edit netstat` will create or edit the um page for netstat. `um list` will
-list all the um pages you already have. `um topic css` will set the current topic to "css", because you don't
-have to use um exclusively for shell commands.
+`um` supports several additional sub-commands. Among them are:
+* `um list`, which lists all the um pages you already have. 
+* `um rm`, which removes an existing um page. 
+* `um topic`, which switches between topic namespaces for your pages, allowing you to keep a separate set of um pages for
+css properties, for example.
 
 ## Installation
 You can install `um` via [Homebrew](http://brew.sh/):
 ```
-brew install sinclairtarget/wst/um
+$ brew install sinclairtarget/wst/um
+```
+
+A bash completion script for `um` is installed to `/usr/local/etc/bash_completion.d`, assuming you're using the default
+`brew` prefix. You may need to add the following lines to your `~/.bash_profile` to enable the completion:
+```
+if [ -f $(brew --prefix)/etc/bash_completion.d/um-completion.sh ]; then
+  . $(brew --prefix)/etc/bash_completion.d/um-completion.sh
+fi
 ```
 
 ## Help
@@ -59,10 +74,19 @@ pager = less
 
 You can set values for `pager`, `editor`, `default_topic`, and `pages_directory`. The defaults for these options are
 `less`, `vi`, `shell`, and `~/.um`, respectively. Before falling back to the defaults, `um` will attempt to read 
-the values for `pager` and `editor` from the shell environment if they are not specified in `umconfig`.
+the values for `pager` and `editor` from the shell environment (i.e. the `PAGER` and `EDITOR` environment variables) 
+if they are not specified in `umconfig`.
 
-If you place a file called `template.txt` in `.um`, that file will serve as the basis for any new um pages you create.
-The template is preprocessed and the following variables will be replaced before the file is opened in your editor:
+So if you wanted to store your um pages in your Dropbox folder, and you prefer emacs to vim, your config file might look
+like the following:
+```
+editor = emacs
+pages_directory = /Users/myusername/Dropbox/um
+```
+
+## Page Templating
+If you place a file called `template.txt` in `~/.um`, that file will serve as the basis for any new um pages you create.
+The template is preprocessed so that the following variables are replaced before the file is opened in your editor:
 ```
 $name     (Replaced with the name of the page, which you specify when you call `um edit <page name>`)
 $topic    (Replaced with the name of the current topic)
