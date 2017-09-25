@@ -2,9 +2,9 @@ require 'optparse'
 require_relative '../lib/um.rb'
 
 opts_parser = OptionParser.new do |opts|
-  opts.banner = "usage: um topics [OPTIONS...]"
+  opts.banner = 'usage: um topics [OPTIONS...]'
 
-  opts.on("-h", "--help", "Print this help message.") do
+  opts.on('-h', '--help', 'Print this help message.') do
     puts opts
     exit 0
   end

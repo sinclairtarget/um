@@ -3,9 +3,9 @@ require_relative '../lib/um.rb'
 
 options = {}
 opts_parser = OptionParser.new do |opts|
-  opts.banner = "usage: um config [config key]"
+  opts.banner = 'usage: um config [config key]'
 
-  opts.on("-h", "--help", "Print this help message.") do
+  opts.on('-h', '--help', 'Print this help message.') do
     puts opts
     exit 0
   end
@@ -34,15 +34,15 @@ config_file_path = UmConfig.config_path
 
 unless non_default_keys.empty?
   puts "Options prefixed by '*' are set in #{config_file_path}."
-  puts "=" * 80
+  puts '=' * 80
 end
 
 config.each do |key, value|
   option = "#{key} = #{value}"
 
   if non_default_keys.include?(key)
-    puts "* " + option
+    puts '* ' + option
   else
-    puts "  " + option
+    puts '  ' + option
   end
 end

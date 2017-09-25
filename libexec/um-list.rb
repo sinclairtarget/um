@@ -3,13 +3,13 @@ require_relative '../lib/um.rb'
 
 options = {}
 opts_parser = OptionParser.new do |opts|
-  opts.banner = "usage: um list [OPTIONS...]"
+  opts.banner = 'usage: um list [OPTIONS...]'
 
-  opts.on("-t", "--topic TOPIC", "Set topic for a single invocation.") do |topic|
+  opts.on('-t', '--topic TOPIC', 'Set topic for a single invocation.') do |topic|
     options[:topic] = topic
   end
 
-  opts.on("-h", "--help", "Print this help message.") do
+  opts.on('-h', '--help', 'Print this help message.') do
     puts opts
     exit 0
   end

@@ -7,9 +7,9 @@ end
 
 options = {}
 opts_parser = OptionParser.new do |opts|
-  opts.banner = "usage: um help <sub-command>"
+  opts.banner = 'usage: um help <sub-command>'
 
-  opts.on("-h", "--help", "Print this help message.") do
+  opts.on('-h', '--help', 'Print this help message.') do
     puts opts
     exit 0
   end
@@ -35,5 +35,5 @@ file_name = Commands.file_path_for_command(sub_command)
 if file_name
   run_help_only file_name
 else
-  $stderr.puts "No sub-command with that name."
+  $stderr.puts 'No sub-command with that name.'
 end

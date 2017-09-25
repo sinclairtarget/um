@@ -2,17 +2,17 @@ require 'fileutils'
 require 'shellwords'
 require 'tempfile'
 require 'optparse'
-require_relative "../lib/um.rb"
+require_relative '../lib/um.rb'
 
 options = {}
 opts_parser = OptionParser.new do |opts|
-  opts.banner = "usage: um edit [OPTIONS...] <page name>"
+  opts.banner = 'usage: um edit [OPTIONS...] <page name>'
 
-  opts.on("-t", "--topic TOPIC", "Set topic for a single invocation.") do |topic|
+  opts.on('-t', '--topic TOPIC', 'Set topic for a single invocation.') do |topic|
     options[:topic] = topic
   end
 
-  opts.on("-h", "--help", "Print this help message.") do
+  opts.on('-h', '--help', 'Print this help message.') do
     puts opts
     exit 0
   end
@@ -41,9 +41,9 @@ page_path = page_dir + "/#{page_name}.txt"
 # set up template
 temp_file = nil
 unless File.exists? page_path
-  default_template_path = File.expand_path("../share/template.txt", 
+  default_template_path = File.expand_path('../share/template.txt', 
                                            File.dirname(__FILE__))
-  template_path = File.expand_path(UmConfig::CONFIG_DIR_REL_PATH) + "/template.txt"
+  template_path = File.expand_path(UmConfig::CONFIG_DIR_REL_PATH) + '/template.txt'
 
   FileUtils.mkdir_p page_dir
 
@@ -60,7 +60,7 @@ unless File.exists? page_path
   File.write page_path, processed_template
 
   # create temp copy of preprocessed file so we can diff later
-  temp_file = Tempfile.new("um")
+  temp_file = Tempfile.new('um')
   temp_file.write processed_template
   temp_file.flush
 end
