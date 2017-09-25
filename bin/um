@@ -1,6 +1,5 @@
 #! /usr/bin/env ruby
 
-require 'optparse'
 require_relative '../lib/um.rb'
 
 usage = %{usage: um <page name>  
@@ -31,12 +30,12 @@ if ARGV.length == 1
     puts usage
     exit 0
   when 'version', '--version', '-v'
-    path = File.expand_path("../share/version.txt", File.dirname(__FILE__))
+    path = File.expand_path('../share/version.txt', File.dirname(__FILE__))
 
     if File.exists?(path)
       puts File.read(path).strip 
     else
-      puts "unknown"
+      puts 'unknown'
     end
 
     exit 0

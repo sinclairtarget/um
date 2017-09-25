@@ -1,26 +1,17 @@
-require 'optparse'
 require_relative '../lib/um.rb'
 
-opts_parser = OptionParser.new do |opts|
-  opts.banner = 'usage: um topic [OPTIONS...] [topic]'
+Options.parse! do |available_opts|
+  available_opts.banner = 'usage: um topic [OPTIONS...] [topic]'
 
-  opts.on('-d', '--default', 'Resets the topic to the default.') do
+  available_opts.on('-d', '--default', 'Resets the topic to the default.') do
     Topic.clear
     exit 0
   end
 
-  opts.on('-h', '--help', 'Print this help message.') do
-    puts opts
+  available_opts.on('-h', '--help', 'Print this help message.') do
+    puts available_opts
     exit 0
   end
-end
-
-begin
-  opts_parser.parse! ARGV
-rescue OptionParser::InvalidOption => e
-  $stderr.puts e
-  $stderr.puts opts_parser
-  exit 1
 end
 
 config = UmConfig.source

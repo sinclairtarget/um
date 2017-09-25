@@ -1,12 +1,10 @@
-require 'optparse'
 require_relative '../lib/um.rb'
 
 def run_help_only(file_name)
   exec(%{ruby "#{file_name}" --help})
 end
 
-options = {}
-opts_parser = OptionParser.new do |opts|
+options = Options.parse! do |opts|
   opts.banner = 'usage: um help <sub-command>'
 
   opts.on('-h', '--help', 'Print this help message.') do
@@ -15,17 +13,9 @@ opts_parser = OptionParser.new do |opts|
   end
 end
 
-begin
-  opts_parser.parse! ARGV
-rescue OptionParser::InvalidOption => e
-  $stderr.puts e
-  $stderr.puts opts_parser
-  exit 1
-end
-
 sub_command = ARGV.first
 if sub_command.to_s.empty?
-  $stderr.puts opts_parser
+  $stderr.puts options.available
   exit 1
 end
 

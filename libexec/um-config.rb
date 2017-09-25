@@ -1,22 +1,12 @@
-require 'optparse'
 require_relative '../lib/um.rb'
 
-options = {}
-opts_parser = OptionParser.new do |opts|
-  opts.banner = 'usage: um config [config key]'
+Options.parse! do |available_opts|
+  available_opts.banner = 'usage: um config [config key]'
 
-  opts.on('-h', '--help', 'Print this help message.') do
-    puts opts
+  available_opts.on('-h', '--help', 'Print this help message.') do
+    puts available_opts
     exit 0
   end
-end
-
-begin
-  opts_parser.parse! ARGV
-rescue OptionParser::InvalidOption => e
-  $stderr.puts e
-  $stderr.puts opts_parser
-  exit 1
 end
 
 config = UmConfig.source
