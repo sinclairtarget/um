@@ -1,4 +1,5 @@
 require 'shellwords'
+require 'tempfile'
 require_relative '../lib/um.rb'
 
 options = Options.parse! do |available_opts, set_opts|
@@ -25,12 +26,29 @@ end
 config = UmConfig.source
 topic = options[:topic] || Topic.current(config[:default_topic])
 
-page_path = "#{config[:pages_directory]}/#{topic}/#{page_name}.txt"
-unless File.exists? page_path
+page_path = Dir["#{config[:pages_directory]}/#{topic}/#{page_name}.*"].first
+
+unless page_path && File.exists?(page_path)
   msg = %{No um page found for "#{page_name}" under topic "#{topic}."}
   $stderr.puts msg
   exit 2
 end
 
-pager = config[:pager].shellescape
-exec(%{#{pager} "#{page_path}"})
+if File.extname(page_path) == '.md'
+  begin
+    temp_file = Tempfile.new('um')
+    pandoc_output = `pandoc -s -t man "#{page_path}" > "#{temp_file.path}"`
+    unless $?.success?
+      $stderr.puts "Could not convert #{page_name} .md file to man page."
+      $stderr.puts "Pandoc output:"
+      $stderr.puts pandoc_output
+      exit 1
+    end
+
+    system(%{man "#{temp_file.path}"})
+  ensure
+    temp_file.unlink
+  end
+else
+  exec(%{man "#{page_path}"})
+end
