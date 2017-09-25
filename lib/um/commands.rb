@@ -1,14 +1,14 @@
 module Commands
   ALIASES = {
-    "l" => "list",
-    "r" => "read",
-    "e" => "edit",
-    "s" => "edit",     # legacy support
-    "set" => "edit",   # legacy support
-    "t" => "topic",
-    "c" => "config",
-    "h" => "help"
-  }
+    'l' => 'list',
+    'r' => 'read',
+    'e' => 'edit',
+    's' => 'edit',     # legacy support
+    'set' => 'edit',   # legacy support
+    't' => 'topic',
+    'c' => 'config',
+    'h' => 'help'
+  }.freeze
 
   def self.resolve_alias(cmd)
     ALIASES[cmd]
@@ -22,7 +22,7 @@ module Commands
       ARGV.shift
       run file_path
     else
-      run file_path_for_command("read")
+      run file_path_for_command('read')
     end
   end
 
@@ -36,8 +36,11 @@ module Commands
     end
   end
 
-  private
-  def self.run(file_path)
-    exec(%{ruby "#{file_path}" #{ARGV.join(" ")}})
+  class << self
+    private
+
+    def run(file_path)
+      exec(%{ruby "#{file_path}" #{ARGV.join(" ")}})
+    end
   end
 end
