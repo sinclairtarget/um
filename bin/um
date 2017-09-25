@@ -25,21 +25,22 @@ if command.to_s.empty?
   exit 1
 end
 
-if (command == "help" or command == "--help" or command == "-h") and ARGV.length == 1
-  puts usage
-  exit 0
-end
+if ARGV.length == 1
+  case command
+  when 'help', '--help', '-h'
+    puts usage
+    exit 0
+  when 'version', '--version', '-v'
+    path = File.expand_path("../share/version.txt", File.dirname(__FILE__))
 
-if (command == "version" or command == "--version" or command == "-v") and ARGV.length == 1
-  path = File.expand_path("../share/version.txt", File.dirname(__FILE__))
+    if File.exists?(path)
+      puts File.read(path).strip 
+    else
+      puts "unknown"
+    end
 
-  if File.exists?(path)
-    puts File.read(path).strip 
-  else
-    puts "unknown"
+    exit 0
   end
-
-  exit 0
 end
 
 Commands.libexec(command)
