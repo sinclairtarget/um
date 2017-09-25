@@ -12,7 +12,7 @@ module Preprocessor
       when '$time'
         Time.now.rfc2822
       else
-        ""
+        ''
       end
     end
   end
