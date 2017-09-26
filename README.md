@@ -116,7 +116,7 @@ Manual](https://pandoc.org/MANUAL.html#pandocs-markdown) for more information
 about Pandoc's flavor of Markdown and the formatting options available to you
 when you are writing a man page in Markdown.
 
-`um`'s own man pages are written in Markdown and converted using Pandoc, so 
+`um`'s own man pages are written in Markdown and converted using Pandoc, so
 they could also make a good reference.
 
 ## Installation
@@ -199,3 +199,7 @@ you can place the following line in your `.bash_profile` or `.bashrc`:
 ```
 um topic -d
 ```
+
+## Contributing
+You must have `pandoc` installed to convert the Markdown man pages to the troff
+format readable by `man`. See [Rakefile](Rakefile).
