@@ -49,5 +49,6 @@ if File.extname(page_path) == UmConfig::UM_MARKDOWN_EXT
     temp_file.unlink
   end
 else
-  exec(%{man "#{page_path}"})
+  pager = config[:pager].shellescape
+  exec(%{#{pager} "#{page_path}"})
 end

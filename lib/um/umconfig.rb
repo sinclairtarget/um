@@ -14,6 +14,7 @@ class UmConfig
 
   DEFAULT_CONFIG = {
     editor: ENV['EDITOR'] || 'vi',
+    pager: ENV['PAGER'] || 'less',
     pages_directory: File.expand_path('~/.um/pages'),
     default_topic: 'shell',
     pages_ext: UM_MARKDOWN_EXT
@@ -87,7 +88,7 @@ class UmConfig
       if line[/(\w+) = ([\w \/\(\)\.]+)/]
         config[$1.downcase.to_sym] = $2
       elsif line.chomp.length > 0
-        $stderr.puts "Unable to parse configuration file line #{$.}: " + 
+        $stderr.puts "Unable to parse configuration file line #{$.}: " +
           "'#{line.chomp}', skipping"
         parse_error_occurred = true
       end
@@ -98,7 +99,7 @@ class UmConfig
   end
 
   class << self
-    private 
+    private
 
     # Cache the current pages directory in a file. This is used by the bash
     # completion script to avoid spinning up Ruby.
