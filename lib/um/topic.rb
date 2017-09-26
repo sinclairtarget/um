@@ -2,12 +2,12 @@ require 'etc'
 require 'fileutils'
 
 module Topic
-  def self.current(default)
+  def self.current(config)
     file_path = topic_file_path
     if File.exists? file_path
       read_topic(file_path)
     else
-      write_topic(topic_file_path, default)
+      write_topic(topic_file_path, config[:default_topic])
       default
     end
   end

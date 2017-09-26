@@ -16,7 +16,7 @@ options = Options.parse! do |available_opts, set_opts|
 end
 
 config = UmConfig.source
-topic = options[:topic] || Topic.current(config[:default_topic])
+topic = options[:topic] || Topic.current(config)
 
 topic_directory = config.topic_directory(topic)
 unless Dir.exists? topic_directory

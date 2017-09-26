@@ -23,7 +23,7 @@ if page_name.to_s.empty?
 end
 
 config = UmConfig.source
-topic = options[:topic] || Topic.current(config[:default_topic])
+topic = options[:topic] || Topic.current(config)
 page_path = config.existing_page_path(page_name, topic)
 
 unless page_path
