@@ -7,7 +7,8 @@ module Topic
     if File.exists? file_path
       read_topic(file_path)
     else
-      write_topic(topic_file_path, config[:default_topic])
+      default = config[:default_topic]
+      write_topic(topic_file_path, default)
       default
     end
   end
