@@ -19,18 +19,12 @@ if config_key and config.has_key?(config_key.to_sym)
 end
 
 # Otherwise print all key/value pairs in the configuration
-non_default_keys = UmConfig.non_default_keys(config)
-config_file_path = UmConfig.config_path
-
-unless non_default_keys.empty?
-  puts "Options prefixed by '*' are set in #{config_file_path}."
-  puts '=' * 80
-end
+puts "Options prefixed by '*' are set in #{config.file_path}."
 
 config.each do |key, value|
   option = "#{key} = #{value}"
 
-  if non_default_keys.include?(key)
+  if config.overridden?(key)
     puts '* ' + option
   else
     puts '  ' + option

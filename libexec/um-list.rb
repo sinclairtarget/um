@@ -18,14 +18,14 @@ end
 config = UmConfig.source
 topic = options[:topic] || Topic.current(config[:default_topic])
 
-pages_path = "#{config[:pages_directory]}/#{topic}"
-unless Dir.exists? pages_path
+topic_directory = config.topic_directory(topic)
+unless Dir.exists? topic_directory
   $stderr.puts %{No pages found for topic "#{topic}."}
   exit 2
 end
 
 if $stdout.isatty
-  exec(%{ls "#{pages_path}" | sed 's/.txt//' | column})
+  exec(%{ls "#{topic_directory}" | sed 's/.txt//' | column})
 else
-  exec(%{ls "#{pages_path}" | sed 's/.txt//' })
+  exec(%{ls "#{topic_directory}" | sed 's/.txt//' })
 end

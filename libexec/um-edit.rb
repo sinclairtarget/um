@@ -26,18 +26,19 @@ end
 
 config = UmConfig.source
 topic = options[:topic] || Topic.current(config[:default_topic])
+page_path = config.existing_page_path(page_name, topic)
 
-page_dir = "#{config[:pages_directory]}/#{topic}"
-page_path = page_dir + "/#{page_name}.txt"
-
-# set up template
 temp_file = nil
-unless File.exists? page_path
-  default_template_path = File.expand_path('../share/template.txt', 
-                                           File.dirname(__FILE__))
-  template_path = File.expand_path(UmConfig::CONFIG_DIR_REL_PATH) + '/template.txt'
+unless page_path
+  page_path = config.new_page_path(page_name, topic)
 
-  FileUtils.mkdir_p page_dir
+  # set up template
+  default_template_path = 
+    File.expand_path('../share/template.txt', File.dirname(__FILE__))
+  template_path = 
+    File.expand_path(UmConfig::CONFIG_DIR_REL_PATH) + '/template.txt'
+
+  FileUtils.mkdir_p(File.dirname(page_path))
 
   if File.exists? template_path
     FileUtils.cp template_path, page_path

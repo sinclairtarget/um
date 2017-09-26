@@ -25,22 +25,21 @@ end
 
 config = UmConfig.source
 topic = options[:topic] || Topic.current(config[:default_topic])
+page_path = config.existing_page_path(page_name, topic)
 
-page_path = Dir["#{config[:pages_directory]}/#{topic}/#{page_name}.*"].first
-
-unless page_path && File.exists?(page_path)
+unless page_path
   msg = %{No um page found for "#{page_name}" under topic "#{topic}."}
   $stderr.puts msg
   exit 2
 end
 
-if File.extname(page_path) == '.md'
+if File.extname(page_path) == UmConfig::UM_MARKDOWN_EXT
   begin
     temp_file = Tempfile.new('um')
     pandoc_output = `pandoc -s -t man "#{page_path}" > "#{temp_file.path}"`
     unless $?.success?
-      $stderr.puts "Could not convert #{page_name} .md file to man page."
-      $stderr.puts "Pandoc output:"
+      $stderr.puts "Could not convert "
+        "#{page_name} #{UM_MARKDOWN_EXT} file to man page."
       $stderr.puts pandoc_output
       exit 1
     end

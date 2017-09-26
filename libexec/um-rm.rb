@@ -24,9 +24,9 @@ end
 
 config = UmConfig.source
 topic = options[:topic] || Topic.current(config[:default_topic])
+page_path = config.existing_page_path(page_name, topic)
 
-page_path = "#{config[:pages_directory]}/#{topic}/#{page_name}.txt"
-unless File.exists? page_path
+unless page_path
   msg = %{No um page found for "#{page_name}" under topic "#{topic}."}
   $stderr.puts msg
   exit 2
