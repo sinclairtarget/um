@@ -5,8 +5,7 @@
 um-list -- List all um pages under the current topic
 
 # SYNOPSIS
-**um list** [-t *topic* | --topic *topic*]\
-**um list** [-h | --help]
+**um list** [-h | --help] [-t *topic* | --topic *topic*]
 
 # DESCRIPTION
 This subcommand lists all the available um pages under the current topic.

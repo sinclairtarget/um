@@ -2,7 +2,7 @@
 % Sinclair Target `<sinclairtarget@gmail.com>`
 % September 26, 2017
 # NAME
-um-help -- Get help using um subcommands
+um-help -- Get help about um subcommands
 
 # SYNOPSIS
 **um help** [-h | --help] [*subcommand*]

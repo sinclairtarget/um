@@ -6,7 +6,7 @@ um -- Create your own man pages
 
 # SYNOPSIS
 **um** [-t *topic* | --topic *topic*] *pagename*\
-**um** [-h | --help] [-v | --version]
+**um** [-h | --help] [-v | --version]\
 **um** *subcommand* [OPTIONS ...]
 
 # DESCRIPTION
@@ -18,8 +18,8 @@ later without wading through all the information in the offical man page for
 that command.
 
 **um** can be invoked on its own or in conjunction with a subcommand. Invoking
-**um** on its own is equivalent to invoking **um read**. You must provide a
-*pagename* argument that tells **um** which page you want to display.
+**um** on its own is equivalent to invoking **um read**. In this case, you must
+provide a *pagename* argument that tells **um** which page you want to display.
 
 For more information about the available subcommands, refer to the SEE ALSO
 section below.

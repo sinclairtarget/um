@@ -5,7 +5,7 @@
 um-topic -- Get and set the current um topic
 
 # SYNOPSIS
-**um topic** [-h | --help] [-d | --default] [topic]
+**um topic** [-h | --help] [-d | --default] [*topic*]
 
 # DESCRIPTION
 The current topic determines which set of um pages are in use.

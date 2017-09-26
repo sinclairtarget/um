@@ -5,8 +5,7 @@
 um-config -- View the current um configuration
 
 # SYNOPSIS
-**um config** [*option_key*]\
-**um config** [-h | --help]
+**um config** [-h | --help] [*option_key*]
 
 # DESCRIPTION
 When run without arguments, this subcommand prints the entire configuration
