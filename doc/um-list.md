@@ -1,0 +1,24 @@
+% UM-LIST(1)
+% Sinclair Target `<sinclairtarget@gmail.com>`
+% September 26, 2017
+# NAME
+um-list -- List all um pages under the current topic
+
+# SYNOPSIS
+**um list** [-t *topic* | --topic *topic*]\
+**um list** [-h | --help]
+
+# DESCRIPTION
+This subcommand lists all the available um pages under the current topic.
+
+# OPTIONS
+-h, --help
+: Displays help information for this subcommand.
+
+-t, --topic
+: Override the current topic for this invocation of **um**. **um list** will
+then list the um pages under *topic*.
+
+# SEE ALSO
+um(1), um-config(1), um-help(1), um-read(1), um-edit(1), um-topic(1),
+um-topics(1), um-rm(1)
