@@ -4,7 +4,7 @@ require 'fileutils'
 module Topic
   def self.current(config)
     file_path = topic_file_path
-    if File.exists? file_path
+    if File.exist? file_path
       read_topic(file_path)
     else
       default = config[:default_topic]
@@ -19,7 +19,7 @@ module Topic
 
   def self.clear
     file_path = topic_file_path
-    File.delete file_path if File.exists? file_path
+    File.delete file_path if File.exist? file_path
   end
 
   class << self

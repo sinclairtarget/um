@@ -38,7 +38,7 @@ if File.extname(page_path) == UmConfig::UM_MARKDOWN_EXT
     temp_file = Tempfile.new('um')
     pandoc_output = `pandoc -s -t man "#{page_path}" > "#{temp_file.path}"`
     unless $?.success?
-      $stderr.puts "Could not convert "
+      $stderr.puts "Could not convert " +
         "#{page_name} #{UM_MARKDOWN_EXT} file to man page."
       $stderr.puts pandoc_output
       exit 1

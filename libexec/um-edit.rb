@@ -38,12 +38,10 @@ unless page_path
 
   FileUtils.mkdir_p(File.dirname(page_path))
 
-  if File.exists? template_path
+  if File.exist? template_path
     FileUtils.cp template_path, page_path
-    used_template_path = template_path
   else
     FileUtils.cp default_template_path, page_path
-    used_template_path = default_template_path
   end
 
   template = File.read page_path

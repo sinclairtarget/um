@@ -27,7 +27,7 @@ class UmConfig
     @file_path = config_path
     @parsed_config = {}
 
-    if File.exists? config_path
+    if File.exist? config_path
       @parsed_config = parse_config(config_path)
     end
 
@@ -107,7 +107,7 @@ class UmConfig
       FileUtils.mkdir_p tmp_dir_path
 
       tmp_file_path = tmp_dir_path + '/current.pagedir'
-      unless File.exists?(tmp_file_path)
+      unless File.exist?(tmp_file_path)
         File.write(tmp_file_path, pages_directory_path)
       end
     end

@@ -19,7 +19,7 @@ config = UmConfig.source
 topic = options[:topic] || Topic.current(config)
 
 topic_directory = config.topic_directory(topic)
-unless Dir.exists? topic_directory
+unless Dir.exist? topic_directory
   $stderr.puts %{No pages found for topic "#{topic}."}
   exit 2
 end
