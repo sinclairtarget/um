@@ -33,10 +33,8 @@ unless page_path
   page_path = config.new_page_path(page_name, topic)
 
   # set up template
-  default_template_path = 
-    File.expand_path('../share/template.txt', File.dirname(__FILE__))
-  template_path = 
-    File.expand_path(UmConfig::CONFIG_DIR_REL_PATH) + '/template.txt'
+  default_template_path = config.default_template_path
+  template_path = config.template_path
 
   FileUtils.mkdir_p(File.dirname(page_path))
 

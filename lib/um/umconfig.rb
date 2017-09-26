@@ -8,6 +8,8 @@ class UmConfig
   CONFIG_DIR_REL_PATH = '~/.um'.freeze
   CONFIG_FILE_REL_PATH = '~/.um/umconfig'.freeze
 
+  DEFAULT_TEMPLATE_REL_PATH = '../../share/template'.freeze
+
   UM_MARKDOWN_EXT = '.md'.freeze
 
   DEFAULT_CONFIG = {
@@ -52,6 +54,16 @@ class UmConfig
 
   def topic_directory(topic)
     "#{@config[:pages_directory]}/#{topic}"
+  end
+
+  def template_path
+    File.expand_path(CONFIG_DIR_REL_PATH, File.dirname(__FILE__)) +
+      "/template#{@config[:pages_ext]}"
+  end
+
+  def default_template_path
+    File.expand_path(DEFAULT_TEMPLATE_REL_PATH, File.dirname(__FILE__)) +
+      @config[:pages_ext]
   end
 
   # Sources the config file, returning the config environment as an UmConfig
