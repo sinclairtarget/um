@@ -25,7 +25,7 @@ unless Dir.exists? topic_directory
 end
 
 if $stdout.isatty
-  exec(%{ls "#{topic_directory}" | sed 's/.txt//' | column})
+  exec(%{ls "#{topic_directory}" | sed 's/\.[[:alnum:]]*$//' | column})
 else
-  exec(%{ls "#{topic_directory}" | sed 's/.txt//' })
+  exec(%{ls "#{topic_directory}" | sed 's/\.[[:alnum:]]*$//' })
 end
