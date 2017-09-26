@@ -1,5 +1,6 @@
 #! /usr/bin/env ruby
 
+require 'pathname'
 require_relative '../lib/um.rb'
 
 usage = %{usage: um <page name>
@@ -30,10 +31,12 @@ if ARGV.length == 1
     puts usage
     exit 0
   when 'version', '--version', '-v'
-    path = File.expand_path('../version.txt', File.dirname(__FILE__))
+    script_path = Pathname.new(__FILE__).realpath
+    version_path =
+      File.expand_path('../version.txt', File.dirname(script_path))
 
-    if File.exist?(path)
-      puts File.read(path).strip
+    if File.exist?(version_path)
+      puts File.read(version_path).strip
     else
       puts 'unknown'
     end
