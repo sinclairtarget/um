@@ -8,7 +8,7 @@ class UmConfig
   CONFIG_DIR_REL_PATH = '~/.um'.freeze
   CONFIG_FILE_REL_PATH = '~/.um/umconfig'.freeze
 
-  DEFAULT_TEMPLATE_REL_PATH = '../../share/template'.freeze
+  DEFAULT_TEMPLATE_REL_PATH = '../../template/template'.freeze
 
   UM_MARKDOWN_EXT = '.md'.freeze
 
