@@ -71,7 +71,7 @@ Happily, `pandoc` can be used to convert Markdown documents to `troff`-like man
 pages. By default, `um` expects you to write your um pages in Markdown so that
 it can convert them and pass them to the `man` program to view. You can,
 however, elect to just write your um pages as `.txt` files and view them
-without going throught the `man` program.
+without going through the `man` program.
 
 Below is the Markdown source that produced the `grep` listing above:
 ```markdown
