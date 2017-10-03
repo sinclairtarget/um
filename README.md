@@ -201,5 +201,6 @@ um topic -d
 ```
 
 ## Contributing
-You must have `pandoc` installed to convert the Markdown man pages to the troff
+You must have `pandoc` installed to convert the Markdown man pages (for `um`
+itself, that is) to the roff
 format readable by `man`. See [Rakefile](Rakefile).
