@@ -63,23 +63,24 @@ Um Pages                      September 26, 2017                   GREP(shell)
   you to keep a separate set of um pages for css properties, for example.
 
 ### Um Page Format
-Man pages were historically typeset using the `troff` typesetting system.
-`troff` was basically an early LaTeX. Writing man pages using `troff` today is
-not very fun or intuitive.
+Man pages were [historically typeset using the `roff` typesetting
+system](http://twobithistory.org/2017/09/28/the-lineage-of-man.html). `roff`
+was basically an early LaTeX. Writing man pages using `roff` today is not very
+fun or intuitive.
 
-Happily, `pandoc` can be used to convert Markdown documents to `troff`-like man
+Happily, `pandoc` can be used to convert Markdown documents to `roff`-like man
 pages. By default, `um` expects you to write your um pages in Markdown so that
 it can convert them and pass them to the `man` program to view. You can,
 however, elect to just write your um pages as `.txt` files and view them
 without going through the `man` program.
 
-Below is the Markdown source that produced the `grep` listing above:
+Below is the Markdown source that produced the `grep` listing above. Except for
+the first three lines, it's all just Markdown:
 ```markdown
 % GREP(shell) Um Pages | Um Pages
 %
 % September 26, 2017
 <!-- ^ The Pandoc "title block" which provides metadata about the page. -->
-<!-- If you use the default templates, this will be filled in for you. -->
 
 # NAME <!-- Top-level Markdown headings become man section headings. -->
 grep -- Print lines matching a pattern
@@ -116,10 +117,12 @@ Manual](https://pandoc.org/MANUAL.html#pandocs-markdown) for more information
 about Pandoc's flavor of Markdown and the formatting options available to you
 when you are writing a man page in Markdown.
 
-`um`'s own man pages are written in Markdown and converted using Pandoc, so
-they could also make a good reference.
+`um`'s own [man pages](/doc) are written in Markdown and converted using
+Pandoc, so they could also make a good reference.
 
 ## Installation
+`um` is currently available only for MacOS.
+
 You can install `um` via [Homebrew](http://brew.sh/):
 ```
 $ brew install sinclairtarget/wst/um
@@ -156,13 +159,21 @@ attempt to read the values for `pager` and `editor` from the shell environment
 (i.e.  the `PAGER` and `EDITOR` environment variables) if they are not
 specified in `umconfig`.
 
+Option | Default | Meaning
+--- | --- | ---
+`pager` | `less` | "Use this pager to view um pages."
+`editor` | `vi` | "Use this editor to edit um pages."
+`default_topic` | `shell` | Current topic if none is set.
+`pages_directory` | `~/.um` | Where to store um pages.
+`pages_ext` | `.md` | Unless `.md`, just the extension for your um pages.
+
 The `pager` configuration option is only used when `pages_ext` is not `.md`
 (the default). When `pages_ext` is `.md`, then `um` runs the pages through
 `pandoc` before passing them to `man`. The pager used by `man` is determined by
 the `PAGER` and `MANPAGER` environment variables. See the man page for `man`
 for more information.
 
-So if you wanted to store your um pages in your Dropbox folder, and you prefer
+So, if you wanted to store your um pages in your Dropbox folder, and you prefer
 emacs to vim, your config file might look like the following:
 ```
 editor = emacs
@@ -174,20 +185,19 @@ You can print the current configuration using `um config`.
 ## Page Templating
 If you place a file called `template.md` in `~/.um`, that file will serve as
 the basis for any new um pages you create (when `pages_ext` is set to `.md`).
-The template is preprocessed so that the following variables are replaced
-before the file is opened in your editor:
+If you have `pages_ext` set to something else, perhaps `.txt`, then you should
+create a template file called `template.txt`.
+
+The template file is preprocessed so that the following variables are replaced
+before the file is used to create a new um page:
 
 Variable | Substitution
 --- | ---
-$name | The name of the page, which you specify when you call `um edit <page name>`.
-$NAME | The same as above, but uppercase.
-$topic | The name of the current topic.
-$time | The current time in RFC2822 format.
-$date | The current date as _Month_ _Day_, _Year_.
-
-If you change the `pages_ext` config option to something else, you will have to
-add a template file with the appropriate file extension to continuing using a
-template.
+`$name` | The name of the page, which you specify when you call `um edit <page name>`.
+`$NAME` | The same as above, but uppercase.
+`$topic` | The name of the current topic.
+`$time` | The current time in RFC2822 format.
+`$date` | The current date as _Month_ _Day_, _Year_.
 
 If you do not have an appropriate template in your `~/.um` directory, `um`
 falls back to using its default templates. `um` ships with a default template
@@ -202,5 +212,5 @@ um topic -d
 
 ## Contributing
 You must have `pandoc` installed to convert the Markdown man pages (for `um`
-itself, that is) to the roff
-format readable by `man`. See [Rakefile](Rakefile).
+itself, that is) to the `roff` format readable by `man`. See
+[Rakefile](Rakefile).
