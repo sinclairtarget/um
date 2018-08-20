@@ -53,4 +53,10 @@ _um()
     return 0
 }
     
+# Check if shell is zsh and if so invoke bash-compatible completion.
+
+if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
+   # assume Zsh
+   autoload bashcompinit && bachcompinit
+fi
 complete -F _um um
