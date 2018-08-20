@@ -57,6 +57,6 @@ _um()
 
 if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
    # assume Zsh
-   autoload bashcompinit && bachcompinit
+   autoload bashcompinit && bashcompinit
 fi
 complete -F _um um
