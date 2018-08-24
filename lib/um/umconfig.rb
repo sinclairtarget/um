@@ -39,6 +39,10 @@ class UmConfig
     @parsed_config.has_key?(key)
   end
 
+  def pages_directory
+    File.expand_path(@config[:pages_directory])
+  end
+
   # Returns the path that should be used for a new um page.
   #
   # This method respects the `:pages_ext` config option.
@@ -54,7 +58,7 @@ class UmConfig
   end
 
   def topic_directory(topic)
-    "#{@config[:pages_directory]}/#{topic}"
+    "#{pages_directory}/#{topic}"
   end
 
   def template_path
@@ -73,7 +77,7 @@ class UmConfig
     config_path = File.expand_path(CONFIG_FILE_REL_PATH)
     config = UmConfig.new config_path
 
-    write_pages_directory(config[:pages_directory])
+    write_pages_directory(config.pages_directory)
 
     config
   end
@@ -85,7 +89,7 @@ class UmConfig
 
     parse_error_occurred = false
     File.foreach(path) do |line|
-      if line[/(\w+) = ([\w \/\(\)\.]+)/]
+      if line[/(\w+) = ([\w \/\(\)\.~]+)/]
         config[$1.downcase.to_sym] = $2
       elsif line.chomp.length > 0
         $stderr.puts "Unable to parse configuration file line #{$.}: " +
