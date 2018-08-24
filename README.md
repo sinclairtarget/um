@@ -182,6 +182,15 @@ pages_directory = /Users/myusername/Dropbox/um
 
 You can print the current configuration using `um config`.
 
+Finally, if you want to store your umconfig file in a different location, you
+can specify a new `.um` directory using the `UMCONFIG_HOME` environment
+variable. Adding `export UMCONFIG_HOME = ~/foo/bar` to your `.bash_profile`,
+for example, will cause `um` to look for a file called `umconfig` under
+`~/foo/bar` instead of the default `~/.um`.
+
+Specifying `UMCONFIG_HOME` also changes where `um` looks for template files
+(see next section).
+
 ## Page Templating
 If you place a file called `template.md` in `~/.um`, that file will serve as
 the basis for any new um pages you create (when `pages_ext` is set to `.md`).
