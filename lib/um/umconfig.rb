@@ -5,9 +5,7 @@ require 'forwardable'
 class UmConfig
   extend Forwardable
 
-  CONFIG_DIR_REL_PATH = '~/.um'.freeze
-  CONFIG_FILE_REL_PATH = '~/.um/umconfig'.freeze
-
+  DEFAULT_CONFIG_DIR_REL_PATH = '~/.um'.freeze
   DEFAULT_TEMPLATE_REL_PATH = '../../templates/template'.freeze
 
   UM_MARKDOWN_EXT = '.md'.freeze
@@ -62,7 +60,7 @@ class UmConfig
   end
 
   def template_path
-    File.expand_path(CONFIG_DIR_REL_PATH, File.dirname(__FILE__)) +
+    File.expand_path(self.class.config_dir, File.dirname(__FILE__)) +
       "/template#{@config[:pages_ext]}"
   end
 
@@ -74,12 +72,16 @@ class UmConfig
   # Sources the config file, returning the config environment as an UmConfig
   # object.
   def self.source
-    config_path = File.expand_path(CONFIG_FILE_REL_PATH)
+    config_path = File.expand_path(self.config_dir + '/umconfig')
     config = UmConfig.new config_path
 
     write_pages_directory(config.pages_directory)
 
     config
+  end
+
+  def self.config_dir
+    ENV['UMCONFIG_HOME'] || DEFAULT_CONFIG_DIR_REL_PATH
   end
 
   private
