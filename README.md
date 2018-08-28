@@ -1,5 +1,5 @@
 # um
-`um` is a command-line utility for creating and maintaining your own set of
+`um` is a command-line utility available for MacOS for creating and maintaining your own set of
 `man`-like help pages.
 
 ### Why?
