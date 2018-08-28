@@ -1,3 +1,4 @@
+require 'md2man/roff/engine'
 require 'rake/clean'
 
 SOURCE_DIR = 'doc'.freeze
@@ -25,5 +26,6 @@ CLOBBER.include(OUTPUT_DIR)
 
 rule OUTPUT_EXT => -> (name) { out_to_source(name) } do |t|
   mkdir_p t.name.pathmap('%d')
-  sh "pandoc -s -t man -o '#{t.name}' '#{t.source}'"
+  roff_output = Md2Man::Roff::ENGINE.render(File.read(t.source))
+  File.write t.name, roff_output
 end
