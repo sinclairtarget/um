@@ -6,7 +6,7 @@ class UmConfig
   extend Forwardable
 
   DEFAULT_CONFIG_DIR_REL_PATH = '~/.um'.freeze
-  DEFAULT_TEMPLATE_REL_PATH = '../../templates/template'.freeze
+  DEFAULT_TEMPLATE_REL_PATH = '../../share/um/templates/template'.freeze
 
   UM_MARKDOWN_EXT = '.md'.freeze
 
