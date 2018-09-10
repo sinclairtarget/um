@@ -26,7 +26,7 @@ module Commands
 
   def self.file_path_for_command(cmd)
     cmd = resolve_alias(cmd) || cmd
-    dir = File.expand_path("../../libexec", File.dirname(__FILE__))
+    dir = File.expand_path("./commands", File.dirname(__FILE__))
     filename = LIBEXEC_FILENAME_FORMAT % [cmd]
     path = "#{dir}/#{filename}"
 

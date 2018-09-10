@@ -1,7 +1,7 @@
 require 'fileutils'
 require 'shellwords'
 require 'tempfile'
-require_relative '../lib/um.rb'
+require_relative '../../um.rb'
 
 options = Options.parse! do |available_opts, set_opts|
   available_opts.banner = 'usage: um edit [OPTIONS...] <page name>'

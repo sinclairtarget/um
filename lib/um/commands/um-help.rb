@@ -1,4 +1,4 @@
-require_relative '../lib/um.rb'
+require_relative '../../um.rb'
 
 def run_help_only(file_name)
   exec(%{ruby "#{file_name}" --help})

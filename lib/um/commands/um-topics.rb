@@ -1,4 +1,4 @@
-require_relative '../lib/um.rb'
+require_relative '../../um.rb'
 
 Options.parse! do |available_opts|
   available_opts.banner = 'usage: um topics [OPTIONS...]'
