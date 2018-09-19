@@ -121,12 +121,22 @@ when you are writing a man page in Markdown.
 Pandoc, so they could also make a good reference.
 
 ## Installation
-`um` is currently available only for MacOS.
 
+### MacOS
 You can install `um` via [Homebrew](http://brew.sh/):
 ```
 $ brew install sinclairtarget/wst/um
 ```
+
+### Linux
+
+You can install `um` via [Linux Brew](http://linuxbrew.sh/):
+
+```
+$ brew install sinclairtarget/wst/um
+```
+
+### Post-Installation
 
 A bash completion script for `um` is installed to
 `/usr/local/etc/bash_completion.d`, assuming you're using the default `brew`
