@@ -1,8 +1,7 @@
-% $NAME($topic) Um Pages | Um Pages
-% 
-% $date
-# NAME
-$name --
+# $name --
+{:data-section="$topic"}
+{:data-date="$date"}
+{:data-extra="Um Pages"}
 
 # SYNOPSIS
 
