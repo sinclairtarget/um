@@ -29,14 +29,14 @@ $ um grep
 This will open your pager with whatever you might have for `grep`, say:
 ```
 
-GREP(shell)                        Um Pages                        GREP(shell)
+GREP(shell)                                                        GREP(shell)
 
 
 NAME
        grep -- Print lines matching a pattern
 
 SYNOPSIS
-       grep [options ...] [file ...]
+       grep [OPTIONS...] pattern [FILE...]
 
 REGEX SYNTAX
        .      Matches any character.
@@ -69,57 +69,59 @@ system](http://twobithistory.org/2017/09/28/the-lineage-of-man.html). `roff`
 was basically an early LaTeX. Writing man pages using `roff` today is not very
 fun or intuitive.
 
-Happily, `pandoc` can be used to convert Markdown documents to `roff`-like man
-pages. By default, `um` expects you to write your um pages in Markdown so that
-it can convert them and pass them to the `man` program to view. You can,
-however, elect to just write your um pages as `.txt` files and view them
-without going through the `man` program.
+Happily, the Kramdown gem can be used to convert Markdown documents to
+`roff`-like man pages. By default, `um` expects you to write your um pages in
+Markdown so that it can convert them and pass them to the `man` program to
+view. You can, however, elect to just write your um pages as `.txt` files and
+view them without going through the `man` program.
 
 Below is the Markdown source that produced the `grep` listing above. Except for
-the first three lines, it's all just Markdown:
+the Kramdown-specific attribute syntax, it's all just Markdown:
 ```markdown
-% GREP(shell) Um Pages | Um Pages
-%
-% September 26, 2017
-<!-- ^ The Pandoc "title block" which provides metadata about the page. -->
+# grep -- Print lines matching a pattern
+{:data-section="shell"}
+{:data-date="September 26, 2017"}
+{:data-extra="Um Pages"}
+{::comment}
+^ The Kramdown "attribute list" which provides metadata for the page.
+The first heading must include the name of the command and a summary.
+{:/}
 
-# NAME <!-- Top-level Markdown headings become man section headings. -->
-grep -- Print lines matching a pattern
+## SYNOPSIS
+{::comment}Top level Markdown headings become man section headings.{:/}
+**grep** [OPTIONS...] *pattern* [FILE...]
 
-# SYNOPSIS
-**grep** [options ...] <pattern> [file ...]
+## REGEX SYNTAX
+{::comment}Here we're using a "definition list" to get that man page look.{:/}
 
-# REGEX SYNTAX
-<!-- Here we're using a "definition list" to get that man page look. -->
-.
+`.`
 : Matches any character.
 
-^
+`^`
 : Anchors pattern to beginning of line.
 
-$
+`$`
 : Anchors pattern to end of line.
 
-[]
+`[]`
 : Character set. ^ for negation, - for range.
 
-# OPTIONS
--r
+## OPTIONS
+`-r`
 : Recursively search listed directories.
 
--E
+`-E`
 : Force grep to behave as egrep, accepting extended REGEXes.
-
 ```
 
-See [Configuration](#config) below for more information on changing the default um
-page format. See the [Pandoc
-Manual](https://pandoc.org/MANUAL.html#pandocs-markdown) for more information
-about Pandoc's flavor of Markdown and the formatting options available to you
-when you are writing a man page in Markdown.
+See [Configuration](#config) below for more information on changing the default
+um page format. See the [Kramdown Man Converter
+Documentation](https://kramdown.gettalong.org/converter/man.html) for more
+information about Kramdown's flavor of Markdown and the formatting options
+available to you when you are writing a man page.
 
 `um`'s own [man pages](/doc) are written in Markdown and converted using
-Pandoc, so they could also make a good reference.
+Kramdown, so they could also make a good reference.
 
 ## Installation
 
@@ -180,7 +182,7 @@ Option | Default | Meaning
 
 The `pager` configuration option is only used when `pages_ext` is not `.md`
 (the default). When `pages_ext` is `.md`, then `um` runs the pages through
-`pandoc` before passing them to `man`. The pager used by `man` is determined by
+Kramdown before passing them to `man`. The pager used by `man` is determined by
 the `PAGER` and `MANPAGER` environment variables. See the man page for `man`
 for more information.
 
@@ -229,8 +231,3 @@ you can place the following line in your `.bash_profile` or `.bashrc`:
 ```
 um topic -d
 ```
-
-## Contributing
-You must have `pandoc` installed to convert the Markdown man pages (for `um`
-itself, that is) to the `roff` format readable by `man`. See
-[Rakefile](Rakefile).
