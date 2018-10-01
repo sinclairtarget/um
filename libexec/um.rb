@@ -1,5 +1,3 @@
-#! /usr/bin/env ruby
-
 require 'pathname'
 require_relative '../lib/um.rb'
 
