@@ -1,5 +1,6 @@
 require 'shellwords'
 require 'tempfile'
+require 'kramdown'
 require_relative '../lib/um.rb'
 
 options = Options.parse! do |available_opts, set_opts|
@@ -36,13 +37,8 @@ end
 if File.extname(page_path) == UmConfig::UM_MARKDOWN_EXT
   begin
     temp_file = Tempfile.new('um')
-    pandoc_output = `pandoc -s -t man "#{page_path}" > "#{temp_file.path}"`
-    unless $?.success?
-      $stderr.puts "Could not convert " +
-        "#{page_name} #{UM_MARKDOWN_EXT} file to man page."
-      $stderr.puts pandoc_output
-      exit 1
-    end
+    doc = Kramdown::Document.new(File.read(page_path))
+    File.write(temp_file.path, doc.to_man)
 
     system(%{man "#{temp_file.path}"})
   ensure
