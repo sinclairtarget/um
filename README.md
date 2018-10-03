@@ -69,14 +69,17 @@ system](http://twobithistory.org/2017/09/28/the-lineage-of-man.html). `roff`
 was basically an early LaTeX. Writing man pages using `roff` today is not very
 fun or intuitive.
 
-Happily, the Kramdown gem can be used to convert Markdown documents to
-`roff`-like man pages. By default, `um` expects you to write your um pages in
-Markdown so that it can convert them and pass them to the `man` program to
-view. You can, however, elect to just write your um pages as `.txt` files and
-view them without going through the `man` program.
+Happily, the Kramdown library can be used to convert Markdown documents to
+`roff`-like man pages. (Previously, `um` used Pandoc. See
+[UPGRADE.md](/UPGRADE.md) if the switch to Kramdown has broken your um pages.)
+By default, `um` expects you to write your um pages in Markdown so that it can
+convert them and pass them to the `man` program to view. You can, however,
+elect to just write your um pages as `.txt` files and view them without going
+through the `man` program.
 
 Below is the Markdown source that produced the `grep` listing above. Except for
-the Kramdown-specific attribute syntax, it's all just Markdown:
+the Kramdown-specific attribute syntax (all the fiddly curly brace bits), it's
+all just Markdown:
 ```markdown
 # grep -- Print lines matching a pattern
 {:data-section="shell"}
