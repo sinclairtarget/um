@@ -9,8 +9,9 @@ Options.parse! do |available_opts|
   end
 end
 
+
 config = UmConfig.source
-files = Dir["#{config[:pages_directory]}/*"].map { |file| File.basename(file) }
+files = Dir["#{config.pages_directory}/*"].map { |file| File.basename(file) }
 
 output = files.join("\n")
 
