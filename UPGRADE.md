@@ -15,3 +15,12 @@ look, see [this guide](https://kramdown.gettalong.org/converter/man.html).
 
 The old Pandoc format is documented in the Pandoc user's manual, [available
 here](https://pandoc.org/MANUAL.html#pandocs-markdown).
+
+If you really want to upgrade to 4.0 and migrate your Pandoc um pages, you can
+take a look at [the
+changes](https://github.com/sinclairtarget/um/commit/0158f32d65de822afc3660d82eb020b9ef3deccb#diff-be728250639dc5786a3e7dc2a5f89d92)
+made to `um`'s own man pages for an example of how to do that.
+
+You might also want to look at [these
+changes](https://github.com/sinclairtarget/um/commit/b701f6dd8459e48e36d6e27a431f7186dae4c282)
+to the README.
