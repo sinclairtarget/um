@@ -13,22 +13,21 @@ module Commands
   }.freeze
 
   # Executes the right Ruby file for the given command.
-  def self.libexec(cmd)
-    file_path = file_path_for_command(cmd)
+  def self.libexec(libexec_dir, cmd)
+    file_path = file_path_for_command(libexec_dir, cmd)
 
     if file_path
       ARGV.shift
       run file_path
     else
-      run file_path_for_command('read')
+      run file_path_for_command(libexec_dir, 'read')
     end
   end
 
-  def self.file_path_for_command(cmd)
+  def self.file_path_for_command(libexec_dir, cmd)
     cmd = resolve_alias(cmd) || cmd
-    dir = File.expand_path("../../libexec", File.dirname(__FILE__))
     filename = LIBEXEC_FILENAME_FORMAT % [cmd]
-    path = "#{dir}/#{filename}"
+    path = "#{libexec_dir}/#{filename}"
 
     if File.exist?(path)
       path

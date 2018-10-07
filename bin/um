@@ -1,5 +1,7 @@
+#! /usr/bin/env ruby
+
+require 'um'
 require 'pathname'
-require_relative '../lib/um.rb'
 
 usage = %{usage: um <page name>
        um <sub-command> [ARGS...]
@@ -23,13 +25,14 @@ if command.to_s.empty?
   exit 1
 end
 
+script_path = Pathname.new(__FILE__).realpath
+
 if ARGV.length == 1
   case command
   when 'help', '--help', '-h'
     puts usage
     exit 0
   when 'version', '--version', '-v'
-    script_path = Pathname.new(__FILE__).realpath
     version_path =
       File.expand_path('../version.txt', File.dirname(script_path))
 
@@ -43,4 +46,5 @@ if ARGV.length == 1
   end
 end
 
-Commands.libexec(command)
+libexec_dir = File.expand_path('../libexec', File.dirname(script_path))
+Commands.libexec(libexec_dir, command)

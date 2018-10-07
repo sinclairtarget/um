@@ -29,3 +29,9 @@ rule OUTPUT_EXT => -> (name) { out_to_source(name) } do |t|
   doc = Kramdown::Document.new(File.read(t.source))
   File.write(t.name, doc.to_man)
 end
+
+desc 'Install gem under GEM_HOME'
+task :install do
+  sh 'gem build um.gemspec'
+  sh 'gem install --ignore-dependencies --no-document um*.gem'
+end

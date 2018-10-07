@@ -19,7 +19,8 @@ if sub_command.to_s.empty?
   exit 1
 end
 
-file_name = Commands.file_path_for_command(sub_command)
+libexec_dir = File.expand_path('..', __FILE__)
+file_name = Commands.file_path_for_command(libexec_dir, sub_command)
 if file_name
   run_help_only file_name
 else
