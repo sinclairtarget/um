@@ -40,8 +40,10 @@ unless page_path
 
   if File.exist? template_path
     FileUtils.cp template_path, page_path
-  else
+  elsif File.exist? default_template_path
     FileUtils.cp default_template_path, page_path
+  else
+    FileUtils.touch page_path
   end
 
   template = File.read page_path
