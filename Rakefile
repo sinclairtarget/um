@@ -24,8 +24,8 @@ desc 'Converts Markdown man pages to troff man files.'
 task :man => OUTPUT_FILES
 CLOBBER.include(OUTPUT_DIR)
 
+mkdir_p OUTPUT_DIR if !Dir.exist?(OUTPUT_DIR)
 rule OUTPUT_EXT => -> (name) { out_to_source(name) } do |t|
-  mkdir_p t.name.pathmap('%d')
   doc = Kramdown::Document.new(File.read(t.source))
   File.write(t.name, doc.to_man)
 end
