@@ -24,11 +24,12 @@ desc 'Converts Markdown man pages to troff man files.'
 task :man => OUTPUT_FILES
 CLOBBER.include(OUTPUT_DIR)
 
-rule OUTPUT_EXT => -> (name) { out_to_source(name) } do |t|
-  mkdir_p t.name.pathmap('%d')
+rule OUTPUT_EXT => [-> (name) { out_to_source(name) }, OUTPUT_DIR] do |t|
   doc = Kramdown::Document.new(File.read(t.source))
   File.write(t.name, doc.to_man)
 end
+
+directory OUTPUT_DIR
 
 desc 'Install gem under GEM_HOME'
 task :install do
