@@ -128,16 +128,18 @@ Kramdown, so they could also make a good reference.
 
 ## Installation
 
-### MacOS
-You can install `um` via [Homebrew](http://brew.sh/):
+<a href="https://repology.org/metapackage/um/versions">
+    <img src="https://repology.org/badge/vertical-allrepos/um.svg" alt="Packaging status" align="right">
+</a>
+
+* **MacOS:** `um` is available via [Homebrew](http://brew.sh/):
 ```
 $ brew install sinclairtarget/wst/um
 ```
 
-### Linux
+* **Arch Linux:** `um` is available via the AUR in two versions: the release version [`um`](https://aur.archlinux.org/packages/um/) and the latest master [`um-git`](https://aur.archlinux.org/packages/um-git/)
 
-You can install `um` via [Linux Brew](http://linuxbrew.sh/):
-
+* **Linux Brew:** `um` is available via [Linux Brew](http://linuxbrew.sh/):
 ```
 $ brew install sinclairtarget/wst/um
 ```
