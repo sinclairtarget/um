@@ -129,7 +129,7 @@ Kramdown, so they could also make a good reference.
 ## Installation
 
 <a href="https://repology.org/metapackage/um/versions">
-    <img src="https://repology.org/badge/vertical-allrepos/um.svg" alt="Packaging status" align="right">
+    <img src="https://repology.org/badge/vertical-allrepos/um.svg" alt="Packaging status">
 </a>
 
 * **MacOS:** `um` is available via [Homebrew](http://brew.sh/):
