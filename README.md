@@ -1,7 +1,7 @@
 # um
 `um` is a command-line utility for creating and maintaining your own set of
-`man`-like help pages. It is available for MacOS and Linux (via
-[Linuxbrew](http://linuxbrew.sh/) for now).
+`man`-like help pages. It is available for MacOS (via [Homebrew](https://brew.sh/)) and Linux (via AUR in Arch, otherwise via
+[Linuxbrew](http://linuxbrew.sh/)).
 
 ### Why?
 Have you seen how long `curl`'s man page is? How many times have you gone
