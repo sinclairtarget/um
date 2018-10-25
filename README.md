@@ -29,7 +29,6 @@ $ um grep
 ```
 This will open your pager with whatever you might have for `grep`, say:
 ```
-
 GREP(shell)                                                        GREP(shell)
 
 
