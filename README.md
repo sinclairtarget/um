@@ -1,6 +1,7 @@
 # um
 `um` is a command-line utility for creating and maintaining your own set of
-`man`-like help pages. It is available for MacOS (via [Homebrew](https://brew.sh/)) and Linux (via AUR in Arch, otherwise via
+`man`-like help pages. It is available for MacOS (via
+[Homebrew](https://brew.sh/)) and Linux (via AUR in Arch, otherwise via
 [Linuxbrew](http://linuxbrew.sh/)).
 
 ### Why?
@@ -134,7 +135,7 @@ Kramdown, so they could also make a good reference.
 
 * **MacOS:** `um` is available via [Homebrew](http://brew.sh/):
 ```
-$ brew install sinclairtarget/wst/um
+$ brew install um
 ```
 
 * **Arch Linux:** `um` is available via the AUR in two versions: the release version [`um`](https://aur.archlinux.org/packages/um/) and the latest master [`um-git`](https://aur.archlinux.org/packages/um-git/)
