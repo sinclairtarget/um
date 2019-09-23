@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 
-require 'um'
+require_relative '../lib/um'
 require 'pathname'
 
 usage = %{usage: um <page name>
