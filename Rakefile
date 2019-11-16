@@ -36,3 +36,4 @@ task :install do
   sh 'gem build um.gemspec'
   sh 'gem install --ignore-dependencies --no-document um*.gem'
 end
+CLEAN.include('um*.gem')
