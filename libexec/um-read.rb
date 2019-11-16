@@ -1,4 +1,3 @@
-require 'shellwords'
 require 'tempfile'
 require 'kramdown'
 require_relative '../lib/um.rb'
@@ -45,6 +44,6 @@ if File.extname(page_path) == UmConfig::UM_MARKDOWN_EXT
     temp_file.unlink
   end
 else
-  pager = config[:pager].shellescape
+  pager = config[:pager]
   exec(%{#{pager} "#{page_path}"})
 end

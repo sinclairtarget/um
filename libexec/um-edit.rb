@@ -1,5 +1,4 @@
 require 'fileutils'
-require 'shellwords'
 require 'tempfile'
 require_relative '../lib/um.rb'
 
@@ -57,7 +56,7 @@ unless page_path
 end
 
 begin
-  editor = config[:editor].shellescape
+  editor = config[:editor]
   system(%{#{editor} "#{page_path}"})
 
   if temp_file
