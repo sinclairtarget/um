@@ -2,7 +2,7 @@
 `um` is a command-line utility for creating and maintaining your own set of
 `man`-like help pages. It is available for MacOS (via
 [Homebrew](https://brew.sh/)) and Linux (via AUR in Arch, otherwise via
-[Linuxbrew](http://linuxbrew.sh/)).
+Homebrew, which is [now on Linux](https://docs.brew.sh/Homebrew-on-Linux)).
 
 ### Why?
 Have you seen how long `curl`'s man page is? How many times have you gone
@@ -132,20 +132,13 @@ Kramdown, so they could also make a good reference.
     <img src="https://repology.org/badge/vertical-allrepos/um.svg" alt="Packaging status">
 </a>
 
-* **MacOS:** `um` is available via [Homebrew](http://brew.sh/):
+* **MacOS/Linux:** `um` is available via [Homebrew](http://brew.sh/):
 ```
 $ brew install um
 ```
-
 * **Arch Linux:** `um` is available via the AUR in two versions: the release version [`um`](https://aur.archlinux.org/packages/um/) and the latest master [`um-git`](https://aur.archlinux.org/packages/um-git/)
 
-* **Linux Brew:** `um` is available via [Linux Brew](http://linuxbrew.sh/):
-```
-$ brew install sinclairtarget/wst/um
-```
-
 ### Post-Installation
-
 A bash completion script for `um` is installed to
 `/usr/local/etc/bash_completion.d`, assuming you're using the default `brew`
 prefix. You may need to add the following lines to your `~/.bash_profile` to
