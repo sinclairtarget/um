@@ -26,7 +26,7 @@ module Topic
     private
 
     def topic_file_path
-      tmp_dir_path = '/var/tmp/um/' + Etc.getlogin
+      tmp_dir_path = '/var/tmp/um/' + Etc.getpwuid.name
       FileUtils.mkdir_p tmp_dir_path
 
       tmp_dir_path + '/current.topic'
