@@ -110,7 +110,7 @@ class UmConfig
     # Cache the current pages directory in a file. This is used by the bash
     # completion script to avoid spinning up Ruby.
     def write_pages_directory(pages_directory_path)
-      tmp_dir_path = '/var/tmp/um/' + Etc.getlogin
+      tmp_dir_path = '/var/tmp/um/' + Etc.getpwuid.name
       FileUtils.mkdir_p tmp_dir_path
 
       tmp_file_path = tmp_dir_path + '/current.pagedir'
