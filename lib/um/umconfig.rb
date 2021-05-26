@@ -91,16 +91,18 @@ class UmConfig
 
     parse_error_occurred = false
     File.foreach(path) do |line|
-      if line[/(\w+) = ([\w \/\(\)\.~-]+)/]
+      if line[/^\s*#/]
+        # skip comment line
+      elsif line[/^\s*(\w+)\s+=\s+([\w \/\(\)\.~-]+)/]
         config[$1.downcase.to_sym] = $2
       elsif line.chomp.length > 0
         $stderr.puts "Unable to parse configuration file line #{$.}: " +
-          "'#{line.chomp}', skipping"
+          "'#{line.chomp}', skipping line"
         parse_error_occurred = true
       end
     end
 
-    $stderr.puts "Your configuration file is #{path}" if parse_error_occurred
+    $stderr.puts "Your configuration file is #{path}","" if parse_error_occurred
     config
   end
 
